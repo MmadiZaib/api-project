@@ -60,6 +60,11 @@ class Offer
      */
     private string $priceCurrency;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="offers")
+     */
+    private $product;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,5 +98,22 @@ class Offer
     public function getPriceCurrency(): string
     {
         return $this->priceCurrency;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+       return $this->url;
     }
 }
